@@ -25,11 +25,21 @@ enum GameType {
 }
 
 enum GamePieces: String {
-    case x, o
+    case x = "x"
+    case o = "o"
+    
     var image: Image {
         Image(self.rawValue)
     }
 }
+
+/*
+enum GamePieces: String {
+    case x, o
+    var image: Image {
+        Image(self.rawValue)
+    }
+} */
 
 struct Player {
     let gamePiece: GamePieces
@@ -60,3 +70,5 @@ enum Move {
         [3, 5, 7]
     ]
 }
+
+

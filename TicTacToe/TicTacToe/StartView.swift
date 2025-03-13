@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct StartView: View {
+    @EnvironmentObject var game: GameService
     @State private var gameType: GameType = .undetermined
     @State private var yourName = ""
     @State private var opponentName = ""
@@ -46,9 +47,11 @@ struct StartView: View {
                 .frame(width: 350)
                 if gameType != .peer {
                     Button("Start Game") {
+                        game.setupGame(gameType: gameType, playerName: yourName, player2Name: opponentName)
                         focus = false
                         startGame.toggle()
                     }
+                    .padding(30)
                     .buttonStyle(.borderedProminent)
                     .disabled(
                         gameType == .undetermined ||
@@ -72,5 +75,6 @@ struct StartView: View {
 struct StartView_Previews: PreviewProvider {
     static var previews: some View {
         StartView()
+            .environmentObject(GameService())
     }
 }

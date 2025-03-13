@@ -9,12 +9,11 @@ import SwiftUI
 
 @main
 struct AppEntry: App {
-    let persistenceController = PersistenceController.shared
-
+    @StateObject var game = GameService()
     var body: some Scene {
         WindowGroup {
             StartView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(game)
         }
     }
 }
